@@ -337,7 +337,7 @@ public:
 
    /**
      * Invokes one iteration of the render loop, used only on single-threaded platforms.
-     * 
+     *
      * This should be called every time the windowing system needs to paint (e.g. at 60 Hz).
      */
     void execute();
@@ -347,7 +347,11 @@ public:
 protected:
     //! \privatesection
     Engine() noexcept = default;
+
+    // embind does not allow protected destructors
+#if !defined(__EMSCRIPTEN__)
     ~Engine() = default;
+#endif
 
 public:
     //! \privatesection
